@@ -1,0 +1,43 @@
+﻿@using HospMedicalExames.Models;
+
+@model List<ConsultaModel>
+
+@{
+    ViewData["Title"] = "Consultas Agendadas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data e Hora</th>
+                <th>Paciente</th>
+                <th>Protocolo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var consulta in Model)
+            {
+                <tr>
+                    <td>@consulta.Id</td>
+                    <td>@consulta.DataHora</td>
+                    <td>@consulta.PacienteId</td>
+                    <td>@consulta.Protocolo</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        <h1> Nenhuma consulta agendada para o dia de hoje</h1>
+        <a href="@Url.Action("Criar", "Consulta")" class="btn btn-primary">Agendar Consulta</a>
+
+    </div>
+}

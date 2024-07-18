@@ -1,0 +1,57 @@
+﻿@using HospMedicalExames.Models;
+
+@model ConsultaModel
+
+@{
+    ViewData["Title"] = "Cadastro de consulta";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Informações da Consulta</h4>
+        <form id="consultaForm" asp-controller="Consulta" asp-action="Criar" method="post">
+
+            @Html.Partial("Forms.cshtml")
+
+            <button type="submit" class="btn btn-primary">Agendar consulta</button>
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Consulta" role="button">Voltar</a>
+
+        </form>
+    </div>
+
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tipoExame').change(function () {
+                var tipoExameId = $(this).val();
+                if (tipoExameId) {
+                    $.ajax({
+                        url: '/api/meucontroller/minhafuncao',
+                        type: 'Post',
+                        data: { tipoExameId: tipoExameId },
+                        success: function (data) {
+                            $('#Exame').empty();
+                            $('#Exame').append($('<option>').val('').text('Selecione o Exame'));
+                            $.each(data, function (i, item) {
+                                $('#Exame').append($('<option>').val(item.id).text(item.nome));
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+
+                } else {
+                    $('#Exame').empty();
+                    $('#Exame').append($('<option>', {
+                        value: '',
+                        text: 'Selecione o Exame'
+                    }));
+                }
+            });
+        });
+    </script>
+
+}

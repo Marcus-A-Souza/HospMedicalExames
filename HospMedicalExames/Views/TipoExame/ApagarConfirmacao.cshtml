@@ -1,0 +1,15 @@
+﻿@model TipoExameModel
+
+
+@{
+    ViewData["Title"] = "Confirmação de excluir exame";
+}
+
+
+<div class="text-center">
+    <h3 class="display-4"> Realmente deseja excluir o tipo de exame @Model.Nome ? </h3>
+
+</div>
+
+<a class="btn btn-primary " asp-controller="TipoExame" asp-action="Index" role="button">Cancelar exclusão</a>
+<a class="btn btn-danger " asp-controller="TipoExame" asp-action="Apagar" asp-route-id="@Model.Id" role="button">Confirmar exclusão</a>

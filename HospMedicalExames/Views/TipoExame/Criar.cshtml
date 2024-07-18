@@ -1,0 +1,17 @@
+﻿@model TipoExameModel
+
+@{
+    ViewData["Title"] = "Cadastro de tipo de exames";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Cadastrar tipos de exames</h1>
+
+</div>
+
+
+<form asp-controller="TipoExame" asp-action="Criar" method="post">
+
+    @Html.Partial("Forms.cshtml")
+
+</form>

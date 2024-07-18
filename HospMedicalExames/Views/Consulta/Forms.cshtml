@@ -1,0 +1,73 @@
+﻿@using HospMedicalExames.Models;
+
+@model ConsultaModel
+
+@{
+    var pacientesSelectList = ViewBag.Pacientes as SelectList;
+    var TipoExamesSelectList = ViewBag.TipoExame as SelectList;
+}
+
+<div class="container">
+
+    <div class="mb-3">
+        <label for="searchInput" class="form-label">Pesquisar Paciente:</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="searchInput" placeholder="Digite o nome ou CPF do paciente...">
+            <button class="btn btn-primary" type="button" id="searchButton">Pesquisar</button>
+        </div>
+        <div id="searchResults"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="paciente" class="form-label">Lista de pacientes:</label>
+        <select class="form-select" id="paciente" name="pacienteId" required>
+            <option value="">Selecione o paciente</option>
+            @if (pacientesSelectList != null)
+            {
+                foreach (var paciente in pacientesSelectList)
+                {
+                    <option value="@paciente.Value">@paciente.Text</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label formaction="DataeHora" class="form-label">Selecione o dia e o horário da consulta</label>
+        <input type="datetime-local" class="form-control datepicker" id="dataHora" name="dataHora" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="tipoExame" class="form-label">Tipo de Exame:</label>
+        <select class="form-select" id="tipoExame" name="tipoExameId" required>
+            <option value="">Selecione o Tipo de Exame</option>
+            @if (TipoExamesSelectList != null)
+            {
+                foreach (var tipoExame in TipoExamesSelectList)
+                {
+                    <option value="@tipoExame.Value">@tipoExame.Text</option>
+                }
+            }
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="Exame" class="form-label">Exame:</label>
+        <select class="form-select" id="Exame" name="ExameId" required>
+            <option value="">Selecione o Exame</option>
+            <option value="1">Exame de Sangue</option>
+            <option value="2">Raio-X</option>
+            <option value="3">Ultrassom</option>
+            <option value="4">Desidimetria Óssea</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="protocolo" class="form-label">Número do protocolo de agendamento:@ViewBag.Protocolo</label>
+        <input type="hidden" asp-for="Protocolo" value="@ViewBag.Protocolo" />
+    </div>
+
+
+</div>

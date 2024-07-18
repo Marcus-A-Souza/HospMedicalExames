@@ -1,0 +1,91 @@
+﻿@model List<ExameModel>
+@{
+    ViewData["Title"] = "Cadastrar Exame";
+
+    
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Exame" asp-action="Criar">Adicionar novo exame</a>
+    </div>
+    <br />
+</div>
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+
+    }
+    <br />
+
+    <div class="text-center">
+        <h1 class="display-4"> Cadastrar  exames</h1>
+
+    </div>
+
+
+    <form asp-controller="Exame" asp-action="Criar" method="post">
+
+        <ul class="list" id="Exame">
+            <h1>Lista de exames</h1>
+
+        </ul>
+        @if (Model != null && Model.Any())
+        {
+            <table class="table" id="table-Exames">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Observaçãoes</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (ExameModel exame in Model)
+                        {
+
+                            <tr>
+                                <th scope="row">@exame.Id</th>
+                                <td>@exame.NomeExame</td>
+                                <td>@exame.Observacoes</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a role="button" class="btn btn-primary display flex" asp-route-id="@exame.Id" asp-controller="Exame" asp-action="Editar">Editar</a>
+                                        <a role="button" class="btn btn-danger" asp-route-id="@exame.Id" asp-controller="Exame" asp-action="ApagarConfirmacao">Apagar</a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+
+
+                    }
+                </tbody>
+            </table>
+
+        }
+
+
+
+
+
+
+    </form>

@@ -1,0 +1,39 @@
+﻿@using HospMedicalExames.Models;
+
+@model List<ConsultaModel>
+
+@{
+    ViewData["Title"] = "Visualizar Consultas";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Consultas Agendadas</h1>
+</div>
+
+<div class="container">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Data e Hora</th>
+                    <th>Paciente</th>
+                    <th>Protrocolo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var consulta in Model)
+                {
+                    <tr>
+                        <td>@consulta.Id</td>
+                        <td>@consulta.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@consulta.PacienteId</td>
+                        <td>@consulta.Protocolo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

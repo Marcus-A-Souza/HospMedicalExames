@@ -1,0 +1,28 @@
+﻿@using HospMedicalExames;
+
+@model ExameModel
+
+
+
+<div class="row">
+    <div class="form-group">
+        <label for="nome">Nome do exame @ViewBag.Teste</label>
+        <input type="text" asp-for="NomeExame" class="form-control" placeholder="Nome do tipo de exame" />
+        @Html.ValidationMessageFor(x => x.NomeExame)
+    </div>
+
+    <div class="form-group col-3">
+        <label for="Descricao">Descrição do tipo de exame</label>
+        <input type="text" asp-for="Observacoes" class="form-control" placeholder="Observações de exame" />
+
+        <select asp-for="TipoExameId" class="form-control">
+            @foreach (var tipo in (List<TipoExameModel>)ViewBag.tipoExame)
+            {
+                <option value="@tipo.Id"> @tipo.Nome</option>
+            }
+        </select>
+
+        <button type="submit" class="btn btn-primary">Salvar o exame</button>
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="Exame" role="button">Voltar</a>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@model TipoExameModel
+
+
+
+<div class="row">
+
+    <div class="form-group">
+        <label for="nome">Nome do tipo de exame</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do tipo de exame" />
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="form-group col-3">
+        <label for="Descricao">Descrição do tipo de exame</label>
+        <input type="text" asp-for="Descricao" class="form-control" placeholder="Descrição do tipo de exame" />
+
+
+        <button type="submit" class="btn btn-primary">Salvar tipo de exame</button>
+        <a class="btn btn-secondary " asp-action="Index" asp-controller="TipoExame" role="button">Voltar</a>
+
+    </div>
+</div>
